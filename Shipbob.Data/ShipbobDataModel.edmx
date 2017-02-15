@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ShipbobModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Shipbob.dbo.Bundles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Bundles">
+          <Key>
+            <PropertyRef Name="BundleName" />
+            <PropertyRef Name="ItemQty" />
+          </Key>
+          <Property Name="BundleName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ItemID" Type="int" />
+          <Property Name="ItemQty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrackingID" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ItemID" Type="int" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="RecipFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="RecipLastName" Type="varchar" MaxLength="50" />
+          <Property Name="RecipAddress" Type="varchar" MaxLength="250" />
+          <Property Name="RecipCity" Type="varchar" MaxLength="50" />
+          <Property Name="RecipState" Type="varchar" MaxLength="50" />
+          <Property Name="RecipCountry" Type="varchar" MaxLength="50" />
+          <Property Name="RecipZip" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK__Bundles__ItemID__45BE5BA9">
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="Bundles" Type="Self.Bundles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Bundles">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__ItemID__43D61337">
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShipbobModelStoreContainer">
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bundles" EntityType="Self.Bundles" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Bundles].[BundleName] AS [BundleName], 
+    [Bundles].[ItemID] AS [ItemID], 
+    [Bundles].[ItemQty] AS [ItemQty]
+    FROM [dbo].[Bundles] AS [Bundles]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Bundles__ItemID__45BE5BA9" Association="Self.FK__Bundles__ItemID__45BE5BA9">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Bundles" EntitySet="Bundles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__ItemID__43D61337" Association="Self.FK__Orders__ItemID__43D61337">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShipbobModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ShipbobEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Items" EntityType="ShipbobModel.Item" />
+          <EntitySet Name="Bundles" EntityType="ShipbobModel.Bundle" />
+          <AssociationSet Name="FK__Bundles__ItemID__3F115E1A" Association="ShipbobModel.FK__Bundles__ItemID__3F115E1A">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Bundle" EntitySet="Bundles" />
+          </AssociationSet>
+          <EntitySet Name="Orders" EntityType="ShipbobModel.Order" />
+          <AssociationSet Name="FK__Orders__ItemID__43D61337" Association="ShipbobModel.FK__Orders__ItemID__43D61337">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bundles" Relationship="ShipbobModel.FK__Bundles__ItemID__3F115E1A" FromRole="Item" ToRole="Bundle" />
+          <NavigationProperty Name="Orders" Relationship="ShipbobModel.FK__Orders__ItemID__43D61337" FromRole="Item" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Bundle">
+          <Key>
+            <PropertyRef Name="BundleName" />
+            <PropertyRef Name="ItemQty" />
+          </Key>
+          <Property Name="BundleName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ItemID" Type="Int32" />
+          <Property Name="ItemQty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="ShipbobModel.FK__Bundles__ItemID__3F115E1A" FromRole="Bundle" ToRole="Item" />
+        </EntityType>
+        <Association Name="FK__Bundles__ItemID__3F115E1A">
+          <End Type="ShipbobModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="ShipbobModel.Bundle" Role="Bundle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Bundle">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrackingID" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ItemID" Type="Int32" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="RecipFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecipLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecipAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RecipCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecipState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecipCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RecipZip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Item" Relationship="ShipbobModel.FK__Orders__ItemID__43D61337" FromRole="Order" ToRole="Item" />
+        </EntityType>
+        <Association Name="FK__Orders__ItemID__43D61337">
+          <End Type="ShipbobModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="ShipbobModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShipbobModelStoreContainer" CdmEntityContainer="ShipbobEntities">
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="ShipbobModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bundles">
+            <EntityTypeMapping TypeName="ShipbobModel.Bundle">
+              <MappingFragment StoreEntitySet="Bundles">
+                <ScalarProperty Name="ItemQty" ColumnName="ItemQty" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="BundleName" ColumnName="BundleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ShipbobModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="RecipZip" ColumnName="RecipZip" />
+                <ScalarProperty Name="RecipCountry" ColumnName="RecipCountry" />
+                <ScalarProperty Name="RecipState" ColumnName="RecipState" />
+                <ScalarProperty Name="RecipCity" ColumnName="RecipCity" />
+                <ScalarProperty Name="RecipAddress" ColumnName="RecipAddress" />
+                <ScalarProperty Name="RecipLastName" ColumnName="RecipLastName" />
+                <ScalarProperty Name="RecipFirstName" ColumnName="RecipFirstName" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="TrackingID" ColumnName="TrackingID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

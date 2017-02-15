@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="570fa24f2c614aa3ac87ee4d85d60dea" Name="Diagram1">
+        <EntityTypeShape EntityType="ShipbobModel.Item" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="ShipbobModel.Bundle" Width="1.5" PointX="3" PointY="5.375" />
+        <AssociationConnector Association="ShipbobModel.FK__Bundles__ItemID__3F115E1A" />
+        <EntityTypeShape EntityType="ShipbobModel.Order" Width="1.5" PointX="3" PointY="8.75" />
+        <AssociationConnector Association="ShipbobModel.FK__Orders__ItemID__43D61337" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

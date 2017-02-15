@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipbob.API", "Shipbob.API\Shipbob.API.csproj", "{122524A9-C468-4CD8-A9A0-2665C63666E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipbob.API.Tests", "Shipbob.API.Tests\Shipbob.API.Tests.csproj", "{CFC8B627-8863-4768-A7E0-DE214F645BD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipbob.Data", "Shipbob.Data\Shipbob.Data.csproj", "{05F22DAB-5431-42C5-B315-73FA20E75513}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipbob.Repositories", "Shipbob.Repositories\Shipbob.Repositories.csproj", "{5F713BAF-1A8C-4928-A472-96585BF9CF67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipbob.Models", "Shipbob.Models\Shipbob.Models.csproj", "{CD349A13-0D05-40D1-A732-7EC96688C5FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{122524A9-C468-4CD8-A9A0-2665C63666E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{122524A9-C468-4CD8-A9A0-2665C63666E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{122524A9-C468-4CD8-A9A0-2665C63666E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{122524A9-C468-4CD8-A9A0-2665C63666E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFC8B627-8863-4768-A7E0-DE214F645BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFC8B627-8863-4768-A7E0-DE214F645BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFC8B627-8863-4768-A7E0-DE214F645BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFC8B627-8863-4768-A7E0-DE214F645BD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F22DAB-5431-42C5-B315-73FA20E75513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F22DAB-5431-42C5-B315-73FA20E75513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F22DAB-5431-42C5-B315-73FA20E75513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F22DAB-5431-42C5-B315-73FA20E75513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F713BAF-1A8C-4928-A472-96585BF9CF67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F713BAF-1A8C-4928-A472-96585BF9CF67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F713BAF-1A8C-4928-A472-96585BF9CF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F713BAF-1A8C-4928-A472-96585BF9CF67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD349A13-0D05-40D1-A732-7EC96688C5FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD349A13-0D05-40D1-A732-7EC96688C5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD349A13-0D05-40D1-A732-7EC96688C5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD349A13-0D05-40D1-A732-7EC96688C5FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

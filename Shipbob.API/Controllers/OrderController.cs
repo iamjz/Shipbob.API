@@ -16,15 +16,22 @@ namespace Shipbob.API.Controllers
     {
         private IShipbobRepository _SbRepo;
 
+        //Injecting shipbobrepository via dependency injection container.
         public OrderController(IShipbobRepository SbRepo)
         {
             _SbRepo = SbRepo;
         }
 
+        /// <summary>
+        /// Passes in trackingID of the order and retrieves the order information from the repo
+        /// </summary>
+        /// <param name="trackingID"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{trackingID}")]
         public IHttpActionResult Get(string trackingID)
         {
+
             OrderInfo ret = new OrderInfo();
 
             try
@@ -39,6 +46,10 @@ namespace Shipbob.API.Controllers
             return Ok(ret);
         }
 
+        /// <summary>
+        /// Pulls the existing item and bundle names for the UI to display
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("list")]
         public IHttpActionResult ListNames()
@@ -57,6 +68,12 @@ namespace Shipbob.API.Controllers
             return Ok(Names);
         }
 
+        /// <summary>
+        /// Adds order to the Orders table via the repo service call.
+        /// Initial check to make sure the input values are valid.
+        /// </summary>
+        /// <param name="orderInput"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("")]
         public IHttpActionResult Post([FromBody]OrderInfo orderInput)

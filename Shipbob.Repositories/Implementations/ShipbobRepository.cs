@@ -10,6 +10,11 @@ namespace Shipbob.Repositories
 {
     public class ShipbobRepository : IShipbobRepository
     {
+        /// <summary>
+        /// Searches for order records that matches the trackingID
+        /// </summary>
+        /// <param name="trackingID"></param>
+        /// <returns></returns>
         public OrderInfo SearchForOrder(string trackingID)
         {
             OrderInfo ret = new OrderInfo();
@@ -18,6 +23,7 @@ namespace Shipbob.Repositories
             {
                 using (var context = new ShipbobEntities())
                 {
+                    //Pull the list of orders and the item names that matches the input trackingID
                     var resp = (from o in context.Orders
                                 join i in context.Items
                                 on o.ItemID equals i.ItemID
@@ -39,6 +45,7 @@ namespace Shipbob.Repositories
 
                     if (resp != null && resp.Count > 0)
                     {
+                        //If there are results, build the OrderInfo view-model and output it.
                         var firstItem = resp.FirstOrDefault();
 
                         OrderInfo order = new OrderInfo();
@@ -72,6 +79,10 @@ namespace Shipbob.Repositories
             return ret;
         }
 
+        /// <summary>
+        /// Checks against the Items and Bundles table. Outputs the names in a list.
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetItemBundleNames()
         {
             List<string> Names = new List<string>();
@@ -105,6 +116,13 @@ namespace Shipbob.Repositories
             return Names;
         }
 
+        /// <summary>
+        /// Users can place an order for a bundle directly but the bundles must 
+        /// eventually map back to individual items.
+        /// EXAMPLE: Mixed Fruit Basket (bundle) = [1 Apple, 1 Orange, 1 Banana]
+        /// </summary>
+        /// <param name="orderInput"></param>
+        /// <returns></returns>
         private Dictionary<string, int>  ConvertBundleToItems(OrderInfo orderInput)
         {
             Dictionary<string, int> returnItems = new Dictionary<string, int>();
@@ -153,6 +171,14 @@ namespace Shipbob.Repositories
             return returnItems;
         }
 
+
+        /// <summary>
+        /// Takes the orderInput and converts all the bundles into individual items.
+        /// Then checks against the items to make sure those are valid items.
+        /// Adds items to the Orders table.
+        /// </summary>
+        /// <param name="orderInput"></param>
+        /// <returns></returns>
         public bool CreateNewOrder(OrderInfo orderInput)
         {
             bool ret = false;

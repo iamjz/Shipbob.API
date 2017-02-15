@@ -99,6 +99,9 @@
       <DependentUpon>ShipbobDataModel.edmx</DependentUpon>
       <LastGenOutput>ShipbobDataModel.cs</LastGenOutput>
     </Content>
+    <Content Include="SqlScripts\01 - CreateAndPopulateItems.sql" />
+    <Content Include="SqlScripts\02 - CreateAndPopulateOrders.sql" />
+    <Content Include="SqlScripts\03 - CreateAndPopulateBundles.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
